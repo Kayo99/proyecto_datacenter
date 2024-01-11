@@ -25,6 +25,7 @@
             <th>Nombre</th>
             <th>Área</th>
             <th>Rol</th>
+            <th>Telefono</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -47,6 +48,7 @@
               {%endif%}
               {%endfor%}
             </td>
+            <td>{{ usuario.Telefono}}</td>
             <td>
               <a
                   href="/mi-perfil/{{usuario.id_usuario}}"
