@@ -29,8 +29,11 @@ def borrarUsuario(id):
     if resp:
         flash('El Usuario fue eliminado correctamente', 'success')
         return redirect(url_for('usuarios'))
+    else:
+        return redirect(url_for('usuarios'))
+        
     
-    
+       
 @app.route('/borrar-area/<string:id_area>/', methods=['GET'])
 def borrarArea(id_area):
     resp = eliminarArea(id_area)

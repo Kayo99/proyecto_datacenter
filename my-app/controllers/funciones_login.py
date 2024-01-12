@@ -11,9 +11,9 @@ import re
 from werkzeug.security import generate_password_hash
 
 
-def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user, Telefono):
+def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user, Estado_civil, Edad):
     respuestaValidar = validarDataRegisterLogin(
-        cedula, name, surname, pass_user, Telefono)
+        cedula, name, surname, pass_user,Estado_civil, Edad)
 
     if (respuestaValidar):
         nueva_password = generate_password_hash(pass_user, method='scrypt')
@@ -21,10 +21,10 @@ def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user, 
             with connectionBD() as conexion_MySQLdb:
                 with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
                     sql = """
-                    INSERT INTO usuarios(cedula, nombre_usuario, apellido_usuario, id_area, id_rol, password, Telefono) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO usuarios(cedula, nombre_usuario, apellido_usuario, id_area, id_rol, password, Estado_civil, Edad) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     """
-                    valores = (cedula, name, surname, id_area, id_rol, nueva_password)
+                    valores = (cedula, name, surname, id_area, id_rol, nueva_password, Estado_civil, Edad)
                     mycursor.execute(sql, valores)
                     conexion_MySQLdb.commit()
                     resultado_insert = mycursor.rowcount
@@ -37,7 +37,7 @@ def recibeInsertRegisterUser(cedula, name, surname, id_area, id_rol, pass_user, 
 
 
 # Validando la data del Registros para el login
-def validarDataRegisterLogin(cedula, name, surname, pass_user):
+def validarDataRegisterLogin(cedula, name, surname, pass_user,Estado_civil,Edad):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -64,7 +64,7 @@ def info_perfil_session(id):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, nombre_usuario, apellido_usuario, cedula, id_area, id_rol FROM usuarios WHERE id_usuario = %s"
+                querySQL = "SELECT id_usuario, nombre_usuario, apellido_usuario, cedula, id_area, id_rol,Estado_civil, Edad FROM usuarios WHERE id_usuario = %s"
                 cursor.execute(querySQL, (id,))
                 info_perfil = cursor.fetchall()
         return info_perfil
@@ -81,6 +81,8 @@ def procesar_update_perfil(data_form,id):
     apellido_usuario = data_form['surname']
     id_area = data_form['selectArea']
     id_rol= data_form['selectRol']
+    Estado_civil= data_form['estado_civil']
+    Edad= data_form['Edad']
     
     new_pass_user = data_form['new_pass_user']
     
@@ -98,11 +100,13 @@ def procesar_update_perfil(data_form,id):
                             apellido_usuario = %s,
                             id_area = %s,
                             id_rol = %s,
+                            Estado_civil = %s,
+                            Edad = %s,
                             password = %s
                         WHERE id_usuario = %s
                     """
                     params = (nombre_usuario,apellido_usuario, id_area, id_rol,
-                                nueva_password, id_user)
+                                nueva_password,Estado_civil,Edad, id_user)
                     cursor.execute(querySQL, params)
                     conexion_MySQLdb.commit()
             return 1
@@ -117,7 +121,7 @@ def procesar_update_perfil(data_form,id):
     print(id_area+" HOLA "+id_rol)
 
     if not pass_actual and not new_pass_user and not repetir_pass_user:
-            return updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_rol)
+            return updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_rol, Estado_civil, Edad)
 
     with connectionBD() as conexion_MySQLdb:
         with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -142,11 +146,13 @@ def procesar_update_perfil(data_form,id):
                                                 nombre_usuario = %s,
                                                 apellido_usuario = %s,
                                                 id_area = %s,
+                                                Estado_civil = %s,
+                                                Edad = %s,
                                                 password = %s
                                             WHERE id_usuario = %s
                                         """
                                         params = (nombre_usuario,apellido_usuario, id_area,
-                                                  nueva_password, id_user)
+                                                  nueva_password, Estado_civil, Edad, id_user)
                                         cursor.execute(querySQL, params)
                                         conexion_MySQLdb.commit()
                                 return cursor.rowcount or []
@@ -159,7 +165,7 @@ def procesar_update_perfil(data_form,id):
 
 
 
-def updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_rol):
+def updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_rol, Estado_civil, Edad):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -170,9 +176,11 @@ def updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_ro
                         apellido_usuario = %s,
                         id_area = %s,
                         id_rol = %s
+                        Estado_civil = %s
+                        Edad = %s
                     WHERE id_usuario = %s
                 """
-                params = ( nombre_usuario, apellido_usuario, id_area, id_rol, id_user)
+                params = ( nombre_usuario, apellido_usuario, id_area, id_rol,Estado_civil, Edad, id_user)
                 cursor.execute(querySQL, params)
                 conexion_MySQLdb.commit()
         return cursor.rowcount
