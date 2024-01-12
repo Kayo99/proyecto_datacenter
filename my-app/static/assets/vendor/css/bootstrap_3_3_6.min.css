@@ -250,7 +250,7 @@ th {
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: rgb(160, 154, 182) !important;
   }
   .table-bordered td,
   .table-bordered th {
