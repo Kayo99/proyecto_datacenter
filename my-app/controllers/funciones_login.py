@@ -64,7 +64,7 @@ def info_perfil_session(id):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id_usuario, nombre_usuario, apellido_usuario, cedula, id_area, id_rol,Estado_civil, Edad FROM usuarios WHERE id_usuario = %s"
+                querySQL = "SELECT id_usuario, nombre_usuario, apellido_usuario, cedula, id_area, id_rol, Estado_civil, Edad FROM usuarios WHERE id_usuario = %s"
                 cursor.execute(querySQL, (id,))
                 info_perfil = cursor.fetchall()
         return info_perfil
@@ -81,9 +81,9 @@ def procesar_update_perfil(data_form,id):
     apellido_usuario = data_form['surname']
     id_area = data_form['selectArea']
     id_rol= data_form['selectRol']
-    Estado_civil= data_form['estado_civil']
+    Estado_civil= data_form['Estado_civil']
     Edad= data_form['Edad']
-    
+
     new_pass_user = data_form['new_pass_user']
     
 
@@ -105,8 +105,8 @@ def procesar_update_perfil(data_form,id):
                             password = %s
                         WHERE id_usuario = %s
                     """
-                    params = (nombre_usuario,apellido_usuario, id_area, id_rol,
-                                nueva_password,Estado_civil,Edad, id_user)
+                    params = (nombre_usuario,apellido_usuario, id_area, id_rol,Estado_civil,Edad,
+                                nueva_password,id_user)
                     cursor.execute(querySQL, params)
                     conexion_MySQLdb.commit()
             return 1
@@ -151,8 +151,8 @@ def procesar_update_perfil(data_form,id):
                                                 password = %s
                                             WHERE id_usuario = %s
                                         """
-                                        params = (nombre_usuario,apellido_usuario, id_area,
-                                                  nueva_password, Estado_civil, Edad, id_user)
+                                        params = (nombre_usuario,apellido_usuario,id_area,
+                                                  nueva_password,Estado_civil,Edad,id_user)
                                         cursor.execute(querySQL, params)
                                         conexion_MySQLdb.commit()
                                 return cursor.rowcount or []
@@ -175,8 +175,8 @@ def updatePefilSinPass(id_user, nombre_usuario, apellido_usuario, id_area, id_ro
                         nombre_usuario = %s,
                         apellido_usuario = %s,
                         id_area = %s,
-                        id_rol = %s
-                        Estado_civil = %s
+                        id_rol = %s,
+                        Estado_civil = %s,
                         Edad = %s
                     WHERE id_usuario = %s
                 """

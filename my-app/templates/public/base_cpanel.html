@@ -9,8 +9,14 @@
   <head>
     {% include 'public/includes/head.html' %}
     <!---->
-    {% block customCSS %} {% endblock %}
+    {% block customCSS %} 
   </head>
+  <style>
+    body {
+      background-color: #7c5db4; /* Cambia este color por el que desees */
+    }
+  </style>
+{% endblock %}
   <body>
     {% include 'public/includes/pre_loader.html' %}
     <!---->
