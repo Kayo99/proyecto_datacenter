@@ -25,7 +25,7 @@ def usuarios():
 @app.route("/Monitoreo", methods=['GET'])
 def Monitoreo():
     if 'conectado' in session:
-        return render_template('public/usuarios/monitoreo.html',  resp_monitoreoBD=monitoreoBD(), dataLogin=dataLoginSesion(), areas=lista_areasBD(), roles = lista_rolesBD())
+        return render_template('public/usuarios/monitoreo.html',  resp_monitoreoBD=monitoreoBD(), dataLogin=dataLoginSesion())
     else:
         return redirect(url_for('inicioCpanel'))
 #Ruta especificada para eliminar un usuario

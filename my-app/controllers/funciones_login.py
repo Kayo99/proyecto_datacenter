@@ -77,7 +77,7 @@ def info_monitoreo_session(id):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id, Nombre_dispositivo, Hora_Fecha, Descripcion, Alertas, ID_Dispositivo FROM Monitoreo WHERE id = %s"
+                querySQL = "SELECT id, Nombre_dispositivo, Hora_Fecha, Descripcion, Alertas, ID_Dispositivo FROM Monitoreo"
                 cursor.execute(querySQL, (id,))
                 info_monitoreo = cursor.fetchall()
         return info_monitoreo

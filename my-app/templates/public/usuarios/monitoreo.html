@@ -1,19 +1,22 @@
-{% block title %}Crud - Python 🐍 | Lista de Monitoreo{% endblock %}
 
-{% block body %}
-{% if resp_monitoreoBD %}
+
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
+<!---->
+{% block body %} {% if (resp_monitoreoBD) %}
 
 <div class="card content_consignaciones" style="border-radius: 0px !important">
   <section id="respuestaFiltroMes">
     <h2 class="text-center mt-5 mb-5">
-      Lista de Monitoreo
+      Monitoreo
       <hr />
     </h2>
 
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
-          <tr style="background-color: #3e3686">
+          <tr style="background-color: #aba6d8">
             <th>ID</th>
             <th>Nombre Dispositivo</th>
             <th>Hora Fecha</th>
@@ -34,6 +37,7 @@
           </tr>
           {% endfor %}
         </tbody>
+
       </table>
     </div>
   </section>
@@ -42,9 +46,11 @@
 <div class="container mt-3 mb-3" style="width: 100% !important">
   <div class="row justify-content-md-center mb-2">
     <div class="col-12">
-      <h2 class="text-center">No hay datos de monitoreo 😭</h2>
+      <h2 class="text-center">No hay registros😭</h2>
     </div>
   </div>
 </div>
 {% endif %}
+<!--Fin del Block-->
 {% endblock %}
+
