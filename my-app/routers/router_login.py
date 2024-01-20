@@ -36,6 +36,10 @@ def perfil(id):
 def cpanelRegisterUser():
         return render_template(f'{PATH_URL_LOGIN}/auth_register.html',dataLogin = dataLoginSesion(),areas=lista_areasBD(), roles=lista_rolesBD())
 
+@app.route('/register-dispositivo', methods=['GET'])
+def cpanelRegisterdispositivo():
+        return render_template(f'{PATH_URL_LOGIN}/auth_humo.html',dataLogin = dataLoginSesion())
+
 
 # Recuperar cuenta de usuario
 @app.route('/recovery-password', methods=['GET'])
