@@ -36,6 +36,13 @@ def Temperatura():
     else:
         return redirect(url_for('inicioCpanel'))
     
+@app.route("/Humo", methods=['GET'])
+def Humo():
+    if 'conectado' in session:
+        return render_template('public/usuarios/Sistema_contra_incendios.html',  resp_humoBD=humoBD(), dataLogin=dataLoginSesion())
+    else:
+        return redirect(url_for('inicioCpanel'))
+    
 #Ruta especificada para eliminar un usuario
 @app.route('/borrar-usuario/<string:id>', methods=['GET'])
 def borrarUsuario(id):

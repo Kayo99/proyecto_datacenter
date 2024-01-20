@@ -1,0 +1,99 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
+<!---->
+{% block body %} {% if (resp_humoBD) %}
+
+<div class="card content_consignaciones" style="border-radius: 0px !important">
+  <section id="respuestaFiltroMes">
+    <h2 class="text-center mt-5 mb-5">
+      Sistema contraincendios
+      <hr />
+    </h2>
+
+    <p class="btn btn-success" style="margin-left: 10px;">
+      <a href="./register-user">
+        <span style="color: rgb(22, 31, 49);">Nuevo Usuario</span>
+      </a>
+    </p>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+          <tr style="background-color: #aba6d8">
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Estado</th>
+            <th>Alerta</th>
+            <th>Descripcion_Sis_In</th>
+            <th>id_monitoreo</th>
+            <th>Hora_Fecha</th>
+            <th>Estado_sistema_contra_incendios</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for Sistema_contra_incendios in resp_humoBD %}
+          <tr>
+            <td>{{Sistema_contra_incendios.Id}}</td>
+            <td>{{Sistema_contra_incendios.Marca}}</td>
+            <td>{{Sistema_contra_incendios.Estado}}</td> 
+            <td>{{Sistema_contra_incendios.Alerta}}</td>
+            <td>{{Sistema_contra_incendios.Descripcion_Sis_In}}</td>
+            <td>{{Sistema_contra_incendios.id_monitoreo}}</td>
+            <td>{{Sistema_contra_incendios.Hora_Fecha}}</td>
+            <td>{{Sistema_contra_incendios.Estado_sistema_contra_incendios}}</td>
+            <td>
+            <td>
+              <a
+                  href="/mi-perfil/{{Sistema_contra_incendios.Id}}"
+                  class="btn btn-success btn-sm"
+                  tooltip="Actualizar Registro">
+                  <i class="bi bi-arrow-clockwise"></i>
+                  Actualizar
+                </a>
+                <a
+                  style="color: rgb(13, 13, 17);"
+                  onclick="eliminar('{{ Sistema_contra_incendios.Id}}');"
+                  class="btn btn-danger btn-sm"
+                  data-bs-toggle="tooltip"
+                  data-bs-offset="0,4"
+                  data-bs-placement="top"
+                  data-bs-html="true"
+                  title="<span>Eliminar a {{ Sistema_contra_incendios.Marca }}</span>">
+                  <i class="bi bi-trash3"></i>
+                  Eliminar
+                </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% else %}
+<div class="container mt-3 mb-3" style="width: 100% !important">
+  <div class="row justify-content-md-center mb-2">
+    <div class="col-12">
+      <h2 class="text-center">No hay Registro sistema contra incendios 😭</h2>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!--Fin del Block-->
+{% endblock %}
+
+<!--Script Custom-->
+{% block customJS %}
+<script>
+  function eliminarUsuario(id) {
+    if (confirm("¿Estas seguro que deseas eliminar el Usuario?")) {
+      let url = `/borrar-usuario/${id}`;
+      if (url) {
+        window.location.href = url;
+      }
+    }
+  }
+</script>
+{% endblock %}

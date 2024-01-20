@@ -70,6 +70,14 @@
       <div data-i18n="Tables" style="color: #100e8f;">Sistema de temperatura</div>
     </a>
   </li>
+  <li
+  class="menu-item {% if request.path == '/Humo' %} active {% endif %}"
+>
+  <a href="/Humo" class="menu-link">
+    <i class="menu-icon bi bi-person-lines-fill"></i>
+    <div data-i18n="Tables" style="color: #100e8f;">Sistema contra incendios</div>
+  </a>
+</li>
     <li
       class="menu-item {% if request.path == '/mi-perfil/{{dataLogin.id}}'%} active {% endif %}"
     >
