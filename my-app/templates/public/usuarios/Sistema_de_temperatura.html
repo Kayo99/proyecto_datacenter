@@ -1,0 +1,55 @@
+
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
+<!---->
+{% block body %} {% if (resp_temperaturaBD) %}
+
+<div class="card content_consignaciones" style="border-radius: 0px !important">
+  <section id="respuestaFiltroMes">
+    <h2 class="text-center mt-5 mb-5">
+      Lista de Usuarios
+      <hr />
+    </h2>
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+          <tr style="background-color: #aba6d8">
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Temperatura_Ambiente</th>
+            <th>Estado_Sistema_Refrigeracion</th>
+            <th>Estado_Suministro_Electrico</th>
+            <th>id_monitoreo</th>
+            <th>Hora_Fecha</th>
+        <tbody>
+          {% for Sistema_de_temperatura in resp_temperaturaBD %}
+          <tr>
+            <td>{{Sistema_de_temperatura.Id}}</td>
+            <td>{{Sistema_de_temperatura.Marca}}</td>
+            <td>{{Sistema_de_temperatura.Temperatura_Ambiente}}</td> 
+            <td>{{Sistema_de_temperatura.Estado_Sistema_Refrigeracion}}</td>
+            <td>{{Sistema_de_temperatura.Estado_Suministro_Electrico}}</td>
+            <td>{{Sistema_de_temperatura.id_monitoreo}}</td>
+            <td>{{Sistema_de_temperatura.Hora_Fecha}}</td>
+            <td>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% else %}
+<div class="container mt-3 mb-3" style="width: 100% !important">
+  <div class="row justify-content-md-center mb-2">
+    <div class="col-12">
+      <h2 class="text-center">No hay registros de temperatura 😭</h2>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!--Fin del Block-->
+{% endblock %}
+

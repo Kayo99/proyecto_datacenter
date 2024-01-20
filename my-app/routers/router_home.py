@@ -28,6 +28,14 @@ def Monitoreo():
         return render_template('public/usuarios/monitoreo.html',  resp_monitoreoBD=monitoreoBD(), dataLogin=dataLoginSesion())
     else:
         return redirect(url_for('inicioCpanel'))
+    
+@app.route("/Temperatura", methods=['GET'])
+def Temperatura():
+    if 'conectado' in session:
+        return render_template('public/usuarios/Sistema_de_temperatura.html',  resp_temperaturaBD=temperaturaBD(), dataLogin=dataLoginSesion())
+    else:
+        return redirect(url_for('inicioCpanel'))
+    
 #Ruta especificada para eliminar un usuario
 @app.route('/borrar-usuario/<string:id>', methods=['GET'])
 def borrarUsuario(id):

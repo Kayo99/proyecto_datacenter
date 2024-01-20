@@ -147,6 +147,18 @@ def monitoreoBD():
     except Exception as e:
         print(f"Error en monitoreoBD : {e}")
         return []
+    
+def temperaturaBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT Id, Marca, Temperatura_Ambiente, Estado_Sistema_Refrigeracion, Estado_Suministro_Electrico, id_monitoreo, Hora_Fecha FROM Sistema_de_temperatura"
+                cursor.execute(querySQL,)
+                temperaturaBD = cursor.fetchall()
+        return temperaturaBD
+    except Exception as e:
+        print(f"Error en temperaturaBD : {e}")
+        return []
 
 def lista_areasBD():
     try:
