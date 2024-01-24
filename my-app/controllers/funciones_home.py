@@ -152,7 +152,7 @@ def temperaturaBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Id, Marca, Temperatura_Ambiente, Estado_Sistema_Refrigeracion, Estado_Suministro_Electrico, id_monitoreo, Hora_Fecha FROM Sistema_de_temperatura"
+                querySQL = "SELECT Id, Temperatura_Ambiente, Estado_Sistema_Refrigeracion, Hora_Fecha FROM Sistema_de_temperatura"
                 cursor.execute(querySQL,)
                 temperaturaBD = cursor.fetchall()
         return temperaturaBD
@@ -164,12 +164,24 @@ def humoBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Id, Marca, Estado, Alerta, Descripcion_Sis_In, id_monitoreo, Hora_Fecha, Estado_sistema_contra_incendios FROM Sistema_contra_incendios"
+                querySQL = "SELECT Id, Hora_Fecha, Estado_sistema_contra_incendios FROM Sistema_contra_incendios"
                 cursor.execute(querySQL,)
                 humoBD = cursor.fetchall()
         return humoBD
     except Exception as e:
         print(f"Error en temperaturaBD : {e}")
+        return []
+
+def ventilacionBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT Codigo_Ventilacion, Estado_Ventilacion,Hora_Fecha_Ventilacion FROM Registro_de_Ventilacion"
+                cursor.execute(querySQL,)
+                ventilacionBD = cursor.fetchall()
+        return ventilacionBD
+    except Exception as e:
+        print(f"Error en ventilacionBD : {e}")
         return []
 
 def lista_areasBD():

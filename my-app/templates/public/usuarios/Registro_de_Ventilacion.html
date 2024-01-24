@@ -2,46 +2,28 @@
 <!--Cambiando el title-->
 {% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
 <!---->
-{% block body %} {% if (resp_humoBD) %}
+{% block body %} {% if (resp_ventilacionBD) %}
 
 <div class="card content_consignaciones" style="border-radius: 0px !important">
   <section id="respuestaFiltroMes">
     <h2 class="text-center mt-5 mb-5">
-      Sistema contraincendios
-      <hr />
+        Registro_de_Ventilacion
     </h2>
-
-    <button id="botonActualizar" class="btn btn-success btn-sm" tooltip="Actualizar Registro">
-      <i class="bi bi-arrow-clockwise"></i>
-      Actualizar
-    </button>
-  
-    <script>
-      // Función para recargar la página
-      function actualizarPagina() {
-        location.reload();
-      }
-  
-      // Asocia la función al clic del botón
-      document.getElementById('botonActualizar').addEventListener('click', actualizarPagina);
-    </script>
-  
-
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
           <tr style="background-color: #aba6d8">
-            <th>Id</th>
-            <th>Hora_Fecha</th>
-            <th>Estado_sistema_contra_incendios</th>
+            <th>Codigo_Ventilacion</th>
+            <th>Estado_Ventilacion</th>
+            <th>Hora_Fecha_Ventilacion</th>
           </tr>
         </thead>
         <tbody>
-          {% for Sistema_contra_incendios in resp_humoBD %}
+          {% for Registro_de_Ventilacion in resp_ventilacionBD %}
           <tr>
-            <td>{{Sistema_contra_incendios.Id}}</td>
-            <td>{{Sistema_contra_incendios.Hora_Fecha}}</td>
-            <td>{{Sistema_contra_incendios.Estado_sistema_contra_incendios}}</td>
+            <td>{{Registro_de_Ventilacion.Codigo_Ventilacion}}</td>
+            <td>{{Registro_de_Ventilacion.Estado_Ventilacion}}</td>
+            <td>{{Registro_de_Ventilacion.Hora_Fecha_Ventilacion}}</td>
             <td>
               </a>
             </td>
@@ -56,7 +38,7 @@
 <div class="container mt-3 mb-3" style="width: 100% !important">
   <div class="row justify-content-md-center mb-2">
     <div class="col-12">
-      <h2 class="text-center">No hay Registro sistema contra incendios 😭</h2>
+      <h2 class="text-center">No hay Registro de Ventilacion 😭</h2>
     </div>
   </div>
 </div>

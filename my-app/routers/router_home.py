@@ -22,13 +22,6 @@ def usuarios():
     else:
         return redirect(url_for('inicioCpanel'))
 
-@app.route("/Monitoreo", methods=['GET'])
-def Monitoreo():
-    if 'conectado' in session:
-        return render_template('public/usuarios/monitoreo.html',  resp_monitoreoBD=monitoreoBD(), dataLogin=dataLoginSesion())
-    else:
-        return redirect(url_for('inicioCpanel'))
-    
 @app.route("/Temperatura", methods=['GET'])
 def Temperatura():
     if 'conectado' in session:
@@ -40,6 +33,13 @@ def Temperatura():
 def Humo():
     if 'conectado' in session:
         return render_template('public/usuarios/Sistema_contra_incendios.html',  resp_humoBD=humoBD(), dataLogin=dataLoginSesion())
+    else:
+        return redirect(url_for('inicioCpanel'))
+    
+@app.route("/Ventilacion", methods=['GET'])
+def Ventilacion():
+    if 'conectado' in session:
+        return render_template('public/usuarios/Registro_de_Ventilacion.html',  resp_ventilacionBD=ventilacionBD(), dataLogin=dataLoginSesion())
     else:
         return redirect(url_for('inicioCpanel'))
     

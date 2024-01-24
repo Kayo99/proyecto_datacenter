@@ -72,25 +72,12 @@ def info_perfil_session(id):
         print(f"Error en info_perfil_session : {e}")
         return []
 
-def info_monitoreo_session(id):
-    print(id)
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id, Nombre_dispositivo, Hora_Fecha, Descripcion, Alertas, ID_Dispositivo FROM Monitoreo"
-                cursor.execute(querySQL, (id,))
-                info_monitoreo = cursor.fetchall()
-        return info_monitoreo
-    except Exception as e:
-        print(f"Error en info_monitoreo_session : {e}")
-        return []
-
 def info_temperatura_session(id):
     print(id)
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Id, Marca, Temperatura_Ambiente, Estado_Sistema_Refrigeracion, Estado_Suministro_Electrico, id_monitoreo, Hora_Fecha FROM Sistema_de_temperatura"
+                querySQL = "SELECT Id, Temperatura_Ambiente, Estado_Sistema_Refrigeracion,Hora_Fecha FROM Sistema_de_temperatura"
                 cursor.execute(querySQL, (id,))
                 info_temperatura = cursor.fetchall()
         return info_temperatura
@@ -110,6 +97,20 @@ def info_humo_session(id):
     except Exception as e:
         print(f"Error en info_humo_session : {e}")
         return []
+
+def info_ventilacion_session(id):
+    print(id)
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT Codigo_Ventilacion, Estado_Ventilacion,Hora_Fecha_Ventilacion FROM Registro_de_Ventilacion"
+                cursor.execute(querySQL, (id,))
+                info_ventilacion = cursor.fetchall()
+        return info_ventilacion
+    except Exception as e:
+        print(f"Error en info_ventilacion_session : {e}")
+        return []
+    
 def procesar_update_perfil(data_form,id):
     # Extraer datos del diccionario data_form
     id_user = id

@@ -54,14 +54,7 @@
       </a>
     </li>
     {%endif%}
-    <li
-      class="menu-item {% if request.path == '/Monitoreo' %} active {% endif %}"
-    >
-      <a href="/Monitoreo" class="menu-link">
-        <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Tables" style="color: #100e8f;">Monitoreo</div>
-      </a>
-    </li>
+
     <li
     class="menu-item {% if request.path == '/Temperatura' %} active {% endif %}"
   >
@@ -78,8 +71,13 @@
     <div data-i18n="Tables" style="color: #100e8f;">Sistema contra incendios</div>
   </a>
 </li>
-    <li
-      class="menu-item {% if request.path == '/mi-perfil/{{dataLogin.id}}'%} active {% endif %}"
+<li class="menu-item {% if request.path == '/Ventilacion' %} active {% endif %}">
+  <a href="/Ventilacion" class="menu-link">
+      <i class="menu-icon bi bi-person-lines-fill"></i>
+      <div data-i18n="Tables" style="color: #100e8f;">Registro de Ventilacion</div>
+  </a>
+</li>
+<li   class="menu-item {% if request.path == '/mi-perfil/{{dataLogin.id}}'%} active {% endif %}"
     >
       <a href="/mi-perfil/{{dataLogin.id}}" class="menu-link">
         <i class="menu-icon bi bi-person-fill-gear"></i>
