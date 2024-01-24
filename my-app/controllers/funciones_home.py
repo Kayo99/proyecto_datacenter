@@ -183,6 +183,17 @@ def ventilacionBD():
     except Exception as e:
         print(f"Error en ventilacionBD : {e}")
         return []
+def seguridadBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT Codigo_Seguridad,Id_Usuario,Nombre_Usuario,hora_fecha_Entrada, hora_fecha_Salida FROM Sistema_Seguridad"
+                cursor.execute(querySQL,)
+                seguridadBD = cursor.fetchall()
+        return seguridadBD
+    except Exception as e:
+        print(f"Error en seguridadBD : {e}")
+        return []
 
 def lista_areasBD():
     try:

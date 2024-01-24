@@ -77,6 +77,13 @@
       <div data-i18n="Tables" style="color: #100e8f;">Registro de Ventilacion</div>
   </a>
 </li>
+</li>
+<li class="menu-item {% if request.path == '/Seguridad' %} active {% endif %}">
+  <a href="/Seguridad" class="menu-link">
+      <i class="menu-icon bi bi-person-lines-fill"></i>
+      <div data-i18n="Tables" style="color: #100e8f;">Seguridad</div>
+  </a>
+</li>
 <li   class="menu-item {% if request.path == '/mi-perfil/{{dataLogin.id}}'%} active {% endif %}"
     >
       <a href="/mi-perfil/{{dataLogin.id}}" class="menu-link">

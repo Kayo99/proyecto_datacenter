@@ -1,0 +1,61 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Crud - Python 🐍 | Lista de Usuarios{% endblock %}
+<!---->
+{% block body %} {% if (resp_seguridadBD) %}
+
+<div class="card content_consignaciones" style="border-radius: 0px !important">
+  <section id="respuestaFiltroMes">
+    <h2 class="text-center mt-5 mb-5">
+      Seguridad
+      <hr />
+    </h2>
+
+    <p class="btn btn-success" style="margin-left: 10px;">
+      <a href="./register-user">
+        <span style="color: rgb(22, 31, 49);">Nuevo Usuario</span>
+      </a>
+    </p>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+          <tr style="background-color: #aba6d8">
+            <th>Código Seguridad</th>
+            <th>Id Usuario</th>
+            <th>Nombre Usuario</th>
+            <th>Hora Entrada</th>
+            <th>Hora Salida</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for Sistema_Seguridad in resp_seguridadBD %}
+          <tr>
+            <td>{{ Sistema_Seguridad.Codigo_Seguridad }}</td>
+            <td>{{ Sistema_Seguridad.Id_Usuario }}</td>
+            <td>{{ Sistema_Seguridad.Nombre_Usuario }}</td>
+            <td>{{ Sistema_Seguridad.hora_fecha_Entrada }}</td>
+            <td>{{ Sistema_Seguridad.hora_fecha_Salida }}</td>
+            <td>
+        
+              
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% else %}
+<div class="container mt-3 mb-3" style="width: 100% !important">
+  <div class="row justify-content-md-center mb-2">
+    <div class="col-12">
+      <h2 class="text-center">No hay usuarios 😭</h2>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!--Fin del Block-->
+{% endblock %}
+
+

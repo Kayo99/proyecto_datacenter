@@ -14,7 +14,7 @@
     <div class="container" id="formCrear">
       <form action="/crear-area" method="POST">
         <div class="contenedor">
-          <label class="form-label"> Crear Departmento </label>
+          <label class="form-label"> Crear Departamento </label>
           <div class="campo_clave">
             <!-- Asegúrate de que el atributo name coincida con el nombre del campo en la función de Flask -->
             <input type="text" name="nombre_area" id="nombreSeleccionado" class="form-control"
@@ -34,7 +34,7 @@
     <div class="container" id="formActualizar" style="display: none;">
       <form action="{{ url_for('updateArea') }}" method="POST">
         <div class="contenedor">
-          <label class="form-label">Actualizar Área</label>
+          <label class="form-label">Actualizar Departamento</label>
           <input class="form-control" name="nombre_area" id="inputArea">
           <input name="id_area" hidden id="inputId"> 
         </div>

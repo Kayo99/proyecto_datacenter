@@ -110,6 +110,18 @@ def info_ventilacion_session(id):
     except Exception as e:
         print(f"Error en info_ventilacion_session : {e}")
         return []
+def info_seguridad_session(id):
+    print(id)
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT Codigo_Seguridad,Id_Usuario,Nombre_Usuario,hora_fecha_Entrada, hora_fecha_Salida FROM Sistema_Seguridad"
+                cursor.execute(querySQL, (id,))
+                info_seguridad = cursor.fetchall()
+        return info_seguridad
+    except Exception as e:
+        print(f"Error en info_seguridad_session : {e}")
+        return []
     
 def procesar_update_perfil(data_form,id):
     # Extraer datos del diccionario data_form
