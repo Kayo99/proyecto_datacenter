@@ -136,18 +136,6 @@ def lista_usuariosBD():
         print(f"Error en lista_usuariosBD : {e}")
         return []
     
-def monitoreoBD():
-    try:
-        with connectionBD() as conexion_MySQLdb:
-            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT id, Nombre_dispositivo, Hora_Fecha, Descripcion, Alertas, ID_Dispositivo FROM Monitoreo"
-                cursor.execute(querySQL,)
-                monitoreoBD = cursor.fetchall()
-        return monitoreoBD
-    except Exception as e:
-        print(f"Error en monitoreoBD : {e}")
-        return []
-    
 def temperaturaBD():
     try:
         with connectionBD() as conexion_MySQLdb:
@@ -187,7 +175,7 @@ def seguridadBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Codigo_Seguridad,Id_Usuario,Nombre_Usuario,hora_fecha_Entrada, hora_fecha_Salida FROM Sistema_Seguridad"
+                querySQL = "SELECT * FROM Sistema_Seguridad"
                 cursor.execute(querySQL,)
                 seguridadBD = cursor.fetchall()
         return seguridadBD
