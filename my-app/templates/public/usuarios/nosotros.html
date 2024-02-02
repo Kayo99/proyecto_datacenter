@@ -1,0 +1,176 @@
+{% extends 'public/base_cpanel.html' %}
+
+{% block title %}Sensor de Temperatura | Lista{% endblock %}
+
+{% block body %}
+<div class="card content_consignaciones" style="border-radius: 0px !important">
+    <section id="respuestaFiltroMes" style="background-color: #0a0347;">
+      <h2 class="text-center mt-5 mb-5">
+        Data center conteiner 
+      <hr />
+    </h2>
+
+    <div class="slider-box">
+      <div class="slider-container" id="sliderContainer">
+        <div class="slider">
+          <div class="slide">
+            <h2 class="text-center mt-5 mb-5">Data center </h2>
+            <div class="app-brand-logo">
+              <img
+                class="logo"
+                style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;"
+                src="{{ url_for('static', filename ='./assets/img/datacenter2.png') }}"
+                alt="Logo Arriba"
+              />
+            </div>
+          </div>
+
+          <div class="slide">
+            <h2 class="text-center mt-5 mb-5">
+              Partes 
+            </h2>
+            <div class="app-brand-logo">
+              <img
+                class="logo"
+                style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;"
+                src="{{ url_for('static', filename ='./assets/img/favicon.webp') }}"
+                alt="Logo Frente"
+              />
+            </div>
+          </div>
+          <div class="slide">
+            <h2 class="text-center mt-5 mb-5">
+             Cuarto blanco
+            </h2>
+            <div class="app-brand-logo">
+              <img
+                class="logo"
+                style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;"
+                src="{{ url_for('static', filename ='./assets/img/data1.jpg') }}"
+                alt="Logo Atras"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    />
+</div>
+</div>
+<div class="slide">
+<h2 class="text-center mt-5 mb-5">
+  Sala de monitoreo
+</h2>
+<div class="app-brand-logo">
+  <img
+    class="logo"
+    style="display: block; margin: 0 auto; max-width: 100%; max-height: 100%;"
+    src="{{ url_for('static', filename ='./assets/img/data2.jpg') }}"
+    alt="Logo Atras"
+  />
+
+    <div class="slider-controls text-center">
+      <button id="prevBtn" class="arrow-btn">&#9664;</button>
+      <button id="nextBtn" class="arrow-btn">&#9654;</button>
+    </div>
+
+  </section>
+</div>
+
+<style>
+  .slider-box {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+    display: none; /* Oculta inicialmente todos los slides */
+  }
+
+  .logo {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .slider-controls {
+    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .arrow-btn {
+    margin: 0;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var slides = document.querySelectorAll(".slide");
+    var currentSlide = 0;
+    var intervalId;
+
+    function showSlide(index) {
+      slides.forEach(function (slide) {
+        slide.style.display = "none";
+      });
+      slides[index].style.display = "block";
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function startAutoSlide() {
+      intervalId = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(intervalId);
+    }
+
+    // Mostrar el primer slide
+    showSlide(currentSlide);
+
+    // Cambiar de slide cada 10 segundos
+    startAutoSlide();
+
+    // Agregar eventos a los botones
+    document.getElementById("nextBtn").addEventListener("click", function () {
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", function () {
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
+    });
+  });
+</script>
+
+{% endblock %}

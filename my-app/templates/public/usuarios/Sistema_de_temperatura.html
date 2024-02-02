@@ -15,14 +15,14 @@
       <table class="table table-hover">
         <thead>
           <tr style="background-color: #aba6d8">
-            <th>Id</th>
+            <th>Id_Sis_Temp</th>
             <th>Temperatura_Ambiente</th>
             <th>Estado_Sistema_Refrigeracion</th>
             <th>Hora_Fecha</th>
         <tbody>
           {% for Sistema_de_temperatura in resp_temperaturaBD %}
           <tr>
-            <td>{{Sistema_de_temperatura.Id}}</td>
+            <td>{{Sistema_de_temperatura.Id_Sis_Temp}}</td>
             <td>{{Sistema_de_temperatura.Temperatura_Ambiente}}</td> 
             <td>{{Sistema_de_temperatura.Estado_Sistema_Refrigeracion}}</td>
             <td>{{Sistema_de_temperatura.Hora_Fecha}}</td>

@@ -49,6 +49,21 @@ def Seguridad():
         return render_template('public/usuarios/Sistema_Seguridad.html',  resp_seguridadBD=seguridadBD(), dataLogin=dataLoginSesion())
     else:
         return redirect(url_for('inicioCpanel'))
+    
+@app.route("/Tarjetas", methods=['GET'])
+def tarjetas():
+    if 'conectado' in session:
+        return render_template('public/usuarios/tarjetas.html',  resp_tarjetasBD=tarjetasBD(), dataLogin=dataLoginSesion())
+    else:
+        return redirect(url_for('inicioCpanel'))
+
+@app.route("/nosotros", methods=['GET'])
+def nosotros():
+    if 'conectado' in session:
+        return render_template('public/usuarios/nosotros.html', dataLogin=dataLoginSesion())
+    else:
+        return redirect(url_for('inicioCpanel'))
+    
 #Ruta especificada para eliminar un usuario
 @app.route('/borrar-usuario/<string:id>', methods=['GET'])
 def borrarUsuario(id):

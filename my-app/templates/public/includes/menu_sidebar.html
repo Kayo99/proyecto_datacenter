@@ -71,18 +71,21 @@
     <div data-i18n="Tables" style="color: #100e8f;">Sistema contra incendios</div>
   </a>
 </li>
-<li class="menu-item {% if request.path == '/Ventilacion' %} active {% endif %}">
-  <a href="/Ventilacion" class="menu-link">
-      <i class="menu-icon bi bi-person-lines-fill"></i>
-      <div data-i18n="Tables" style="color: #100e8f;">Registro de Ventilacion</div>
-  </a>
-</li>
 </li>
 <li class="menu-item {% if request.path == '/Seguridad' %} active {% endif %}">
   <a href="/Seguridad" class="menu-link">
       <i class="menu-icon bi bi-person-lines-fill"></i>
       <div data-i18n="Tables" style="color: #100e8f;">Seguridad</div>
   </a>
+</li>
+</a>
+<ul class="sub-menu">
+  <li class="menu-item {% if request.path == '/Tarjetas' %} active {% endif %}">
+    <a href="/Tarjetas" class="menu-link">
+      <div data-i18n="Tables" style="color: #100e8f;">Tarjetas</div>
+    </a>
+  </li>
+</ul>
 </li>
 <li   class="menu-item {% if request.path == '/mi-perfil/{{dataLogin.id}}'%} active {% endif %}"
     >
@@ -91,6 +94,11 @@
         <div data-i18n="Tables" style="color: #100e8f;">Mi Perfil</div>
       </a>
     </li>
+    <li class="menu-item {% if request.path == '/nosotros' %} active {% endif %}">
+      <a href="/nosotros" class="menu-link">
+          <i class="menu-icon bi bi-person-lines-fill"></i>
+          <div data-i18n="Tables" style="color: #0e8f64;">Nosotros</div>
+      </a>
     <li class="menu-item">
       <a href="{{ url_for('cerraSesion') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bi-box-arrow-right"></i>

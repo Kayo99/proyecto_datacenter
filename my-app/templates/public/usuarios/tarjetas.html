@@ -1,0 +1,39 @@
+{% extends 'public/base_cpanel.html' %}
+<!-- Cambiando el title -->
+{% block title %}Crud con Python 🐍 | Tarjetas{% endblock %}
+<!-- Inicio del block -->
+{% block body %}
+
+<script src="ruta/al/archivo/jquery.min.js"></script>
+
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12 mb-4">
+      <h3 class="text-center mt-5 mb-3">tarjetas</h3>
+      <hr />
+    </div>
+    <div class="row justify-content-center mb-2">
+      <div class="table-responsive text-nowrap table-hover">
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>id_tarjeta</th>
+              <th>numero_tarjeta</th>
+              <th>id_usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tarjeta in resp_tarjetasBD %}
+            <tr id="{{ tarjeta.id_tarjeta }}">
+              <td>{{ tarjeta.id_tarjeta }}</td>
+              <td>{{ tarjeta.numero_tarjeta }}</td>
+              <td>{{ tarjeta.id_usuario }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

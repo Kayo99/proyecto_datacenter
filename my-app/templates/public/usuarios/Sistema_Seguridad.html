@@ -21,22 +21,19 @@
       <table class="table table-hover">
         <thead>
           <tr style="background-color: #aba6d8">
-            <th>Código Seguridad</th>
-            <th>Id Usuario</th>
-            <th>Nombre Usuario</th>
-            <th>Hora Entrada</th>
-            <th>Hora Salida</th>
-            <th>Acciones</th>
+            <th>Id_Sis_Segu</th>
+            <th>Id_Usuario</th>
+            <th>Id_Tarjeta</th>
+            <th>hora_fecha_Entrada</th>
           </tr>
         </thead>
         <tbody>
           {% for Sistema_Seguridad in resp_seguridadBD %}
           <tr>
-            <td>{{ Sistema_Seguridad.Codigo_Seguridad }}</td>
+            <td>{{ Sistema_Seguridad.Id_Sis_Segu }}</td>
             <td>{{ Sistema_Seguridad.Id_Usuario }}</td>
-            <td>{{ Sistema_Seguridad.Nombre_Usuario }}</td>
+            <td>{{ Sistema_Seguridad.Id_Tarjeta }}</td>
             <td>{{ Sistema_Seguridad.hora_fecha_Entrada }}</td>
-            <td>{{ Sistema_Seguridad.hora_fecha_Salida }}</td>
             <td>
         
               

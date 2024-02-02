@@ -31,17 +31,19 @@
       <table class="table table-hover">
         <thead>
           <tr style="background-color: #aba6d8">
-            <th>Id</th>
-            <th>Hora_Fecha</th>
+            <th>Id_Sis_Ince</th>
+            <th>Humo</th>
             <th>Estado_sistema_contra_incendios</th>
+            <th>Hora_Fecha</th>
           </tr>
         </thead>
         <tbody>
           {% for Sistema_contra_incendios in resp_humoBD %}
           <tr>
-            <td>{{Sistema_contra_incendios.Id}}</td>
-            <td>{{Sistema_contra_incendios.Hora_Fecha}}</td>
+            <td>{{Sistema_contra_incendios.Id_Sis_Ince}}</td>
+            <td>{{Sistema_contra_incendios.Humo}}</td>
             <td>{{Sistema_contra_incendios.Estado_sistema_contra_incendios}}</td>
+            <td>{{Sistema_contra_incendios.Hora_Fecha}}</td>
             <td>
               </a>
             </td>

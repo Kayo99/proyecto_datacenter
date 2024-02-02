@@ -140,7 +140,7 @@ def temperaturaBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Id, Temperatura_Ambiente, Estado_Sistema_Refrigeracion, Hora_Fecha FROM Sistema_de_temperatura"
+                querySQL = "SELECT * FROM Sistema_de_temperatura"
                 cursor.execute(querySQL,)
                 temperaturaBD = cursor.fetchall()
         return temperaturaBD
@@ -152,7 +152,7 @@ def humoBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Id, Hora_Fecha, Estado_sistema_contra_incendios FROM Sistema_contra_incendios"
+                querySQL = "SELECT * FROM Sistema_contra_incendios"
                 cursor.execute(querySQL,)
                 humoBD = cursor.fetchall()
         return humoBD
@@ -164,7 +164,7 @@ def ventilacionBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = "SELECT Codigo_Ventilacion, Estado_Ventilacion,Hora_Fecha_Ventilacion FROM Registro_de_Ventilacion"
+                querySQL = "SELECT Id_Venti, Estado_Ventilacion,Hora_Fecha_Ventilacion FROM Registro_de_Ventilacion"
                 cursor.execute(querySQL,)
                 ventilacionBD = cursor.fetchall()
         return ventilacionBD
@@ -181,6 +181,17 @@ def seguridadBD():
         return seguridadBD
     except Exception as e:
         print(f"Error en seguridadBD : {e}")
+        return []
+def tarjetasBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "SELECT * FROM Tarjetas"
+                cursor.execute(querySQL,)
+                tarjetasBD = cursor.fetchall()
+        return tarjetasBD
+    except Exception as e:
+        print(f"Error en tarjetasBD : {e}")
         return []
 
 def lista_areasBD():
